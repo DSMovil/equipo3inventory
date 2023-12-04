@@ -37,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Email"
+                android:maxLength="40"
                 android:textColor="@color/white">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -59,7 +60,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Password"
-                android:inputType="numberPassword"
+                android:inputType=
+                    "numberPassword"
                 android:maxLength="10"
                 android:textColor="@color/white">
 
@@ -93,5 +95,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.73" />
 
+    <ToggleButton
+        android:layout_width="40dp"
+        android:layout_height="36dp"
+        android:backgroundTint="@color/transparent"
+        android:drawableTop="@drawable/eyeon"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toStartOf="parent"
+        android:outlineSpotShadowColor="@color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:shadowColor="@color/transparent"
+        app:layout_constraintVertical_bias="0.472" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
