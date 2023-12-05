@@ -1,5 +1,6 @@
 package com.example.inventoryapp.view
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -19,8 +20,18 @@ class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
+        val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val userEmail = sharedPreferences.getString("user_email", null)
+
+        if (userEmail != null) {
+            // Ya hay una sesión guardada, inicia directamente la actividad principal
+            val intent = Intent(this@Login, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         //se utiliza viewbinding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -93,6 +104,15 @@ class Login : AppCompatActivity() {
                     val intent = Intent(this@Login, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+                    val intent1 = Intent(this@Login, MainActivity::class.java)
+                    startActivity(intent1)
+                    finish()
+
+// Guardar información del usuario en SharedPreferences
+                    val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("user_email", email)
+                    editor.apply()
                 } else {
                     // La autenticación falló, muestra un Toast con el mensaje de error
                     Toast.makeText(this@Login, "Login incorrecto", Toast.LENGTH_SHORT).show()
