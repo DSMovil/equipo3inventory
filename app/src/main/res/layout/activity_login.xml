@@ -21,12 +21,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.13" />
 
-
-    <!-- Campo email -->
-
-
-    <!-- Campo Password -->
-
     <!-- boton login -->
         <Button
             android:id="@+id/btnLogin"
@@ -113,25 +107,4 @@
             android:textColor="@color/white"
             />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- boton ver/ocultar contraseña -->
-    <!--
-    <ToggleButton
-        android:id="@+id/btnPass"
-        android:layout_width="40dp"
-        android:layout_height="36dp"
-        android:backgroundTint="@color/transparent"
-        android:drawableTop="@drawable/eyeon"
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintStart_toStartOf="parent"
-        android:outlineSpotShadowColor="@color/transparent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:shadowColor="@color/transparent"
-        app:layout_constraintVertical_bias="0.472" />
--->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
