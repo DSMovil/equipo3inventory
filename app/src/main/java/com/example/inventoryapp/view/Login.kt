@@ -9,6 +9,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 
@@ -39,6 +40,15 @@ class Login : AppCompatActivity() {
             }
         }
         binding.registro.setOnClickListener {
+            val email = binding.emailText.text.toString().trim()
+            val pass = binding.passwordText.text.toString().trim()
+
+            if (email.isNotEmpty() && pass.isNotEmpty()) {
+                register(email, pass)
+            } else {
+                // Manejar el caso en el que los campos estén vacíos
+                Toast.makeText(this@Login, "Ingresa email y contraseña", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
@@ -94,6 +104,31 @@ class Login : AppCompatActivity() {
         }
 
         return false
+    }
+
+    private fun register(email: String, password: String) {
+        try {
+            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // El registro fue exitoso, puedes realizar otras acciones aquí
+                    Toast.makeText(this@Login, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@Login, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    // El registro falló, muestra un Toast con el mensaje de error
+                    if (task.exception is FirebaseAuthUserCollisionException) {
+                        // Maneja el caso cuando ya existe un usuario con el mismo email
+                        Toast.makeText(this@Login, "Error en el registro: Este email ya está registrado", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@Login, "Error en el registro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            // Manejo de excepciones, si es necesario
+            Toast.makeText(this@Login, "Error al intentar registrarse", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
