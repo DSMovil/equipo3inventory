@@ -1,5 +1,7 @@
 package com.example.inventoryapp.view
 
+import android.graphics.Color
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -45,6 +47,14 @@ class Login : AppCompatActivity() {
             val pass = binding.passwordText.text.toString().trim()
             binding.btnLogin.isEnabled = email.isNotEmpty() && pass.isNotEmpty() && binding.passLayout.error==null
             binding.registro.isEnabled = email.isNotEmpty() && pass.isNotEmpty() && binding.passLayout.error==null
+            if (email.isNotEmpty() && pass.isNotEmpty() && binding.passLayout.error==null){
+                binding.registro.setTextColor(Color.WHITE)
+                binding.registro.setTypeface(null, Typeface.BOLD)
+            }else{
+                binding.registro.setTextColor(Color.GRAY)
+                binding.registro.setTypeface(null, Typeface.NORMAL)
+            }
+
         }
         override fun afterTextChanged(s: Editable?) {
         }

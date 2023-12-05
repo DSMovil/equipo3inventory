@@ -10,38 +10,32 @@
     tools:context=".view.Login">
 
     <!-- imagen logo -->
-        <ImageView
-            android:id="@+id/clipboardView"
-            android:layout_width="109dp"
-            android:layout_height="158dp"
-            android:src="@drawable/clipboard"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.13" />
-
-
-    <!-- Campo email -->
-
-
-    <!-- Campo Password -->
+    <ImageView
+        android:id="@+id/clipboardView"
+        android:layout_width="109dp"
+        android:layout_height="158dp"
+        android:src="@drawable/clipboard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
 
     <!-- boton login -->
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="291dp"
-            android:layout_height="49dp"
-            android:backgroundTint="@color/orange"
-            android:text="Login"
-            android:textSize="20dp"
-            android:enabled="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.60" />
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="291dp"
+        android:layout_height="49dp"
+        android:backgroundTint="@color/orange"
+        android:text="Login"
+        android:textSize="20dp"
+        android:enabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.60" />
 
     <!-- boton registrarse -->
     <TextView
@@ -113,25 +107,4 @@
             android:textColor="@color/white"
             />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- boton ver/ocultar contraseña -->
-    <!--
-    <ToggleButton
-        android:id="@+id/btnPass"
-        android:layout_width="40dp"
-        android:layout_height="36dp"
-        android:backgroundTint="@color/transparent"
-        android:drawableTop="@drawable/eyeon"
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintStart_toStartOf="parent"
-        android:outlineSpotShadowColor="@color/transparent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:shadowColor="@color/transparent"
-        app:layout_constraintVertical_bias="0.472" />
--->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
