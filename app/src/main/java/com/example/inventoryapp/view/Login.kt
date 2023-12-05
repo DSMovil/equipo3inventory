@@ -1,5 +1,6 @@
 package com.example.inventoryapp.view
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -78,7 +79,10 @@ class Login : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // La autenticación fue exitosa, puedes realizar otras acciones aquí
-                    
+                    Toast.makeText(this@Login, "Login Correcto", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@Login, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     // La autenticación falló, muestra un Toast con el mensaje de error
                     Toast.makeText(this@Login, "Login incorrecto", Toast.LENGTH_SHORT).show()
