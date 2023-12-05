@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 
 import com.example.inventoryapp.databinding.ActivityLoginBinding
 
@@ -23,6 +27,15 @@ class Login : AppCompatActivity() {
         binding.emailText.addTextChangedListener(TextWatcher)
         binding.passwordText.addTextChangedListener(TextWatcher)
         binding.btnLogin.setOnClickListener{
+            val email = binding.emailText.text.toString().trim()
+            val pass = binding.passwordText.text.toString().trim()
+
+            if (email.isNotEmpty() && pass.isNotEmpty()) {
+                authenticate(email, pass)
+            } else {
+                // Manejar el caso en el que los campos estén vacíos
+                Toast.makeText(this@Login, "Ingresa email y contraseña", Toast.LENGTH_SHORT).show()
+            }
         }
         binding.registro.setOnClickListener {
         }
@@ -58,6 +71,25 @@ class Login : AppCompatActivity() {
         }
         override fun afterTextChanged(s: Editable?) {
         }
+    }
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private fun authenticate(email: String, password: String): Boolean {
+        try {
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // La autenticación fue exitosa, puedes realizar otras acciones aquí
+                    
+                } else {
+                    // La autenticación falló, muestra un Toast con el mensaje de error
+                    Toast.makeText(this@Login, "Login incorrecto", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } catch (e: Exception) {
+            // Manejo de excepciones, si es necesario
+            return false
+        }
+
+        return false
     }
 
 
