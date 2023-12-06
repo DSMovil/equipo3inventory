@@ -32,6 +32,7 @@ class Login : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
         //se utiliza viewbinding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -141,7 +142,7 @@ class Login : AppCompatActivity() {
                         // Maneja el caso cuando ya existe un usuario con el mismo email
                         Toast.makeText(this@Login, "Error en el registro: Este email ya está registrado", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this@Login, "Error en el registro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Login, "Error en el registro: No es un email válido", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
