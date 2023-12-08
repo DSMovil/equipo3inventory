@@ -33,6 +33,7 @@ class Login : AppCompatActivity() {
             finish()
         }
 
+
         //se utiliza viewbinding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -95,6 +96,8 @@ class Login : AppCompatActivity() {
         override fun afterTextChanged(s: Editable?) {
         }
     }
+
+    //Funcion autenticacion o login que verifica que el usuario este en la base de datos
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private fun authenticate(email: String, password: String): Boolean {
         try {
@@ -108,12 +111,13 @@ class Login : AppCompatActivity() {
                     val intent1 = Intent(this@Login, MainActivity::class.java)
                     startActivity(intent1)
                     finish()
-
 // Guardar información del usuario en SharedPreferences
                     val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
                     editor.putString("user_email", email)
                     editor.apply()
+
+
                 } else {
                     // La autenticación falló, muestra un Toast con el mensaje de error
                     Toast.makeText(this@Login, "Login incorrecto", Toast.LENGTH_SHORT).show()
@@ -127,6 +131,7 @@ class Login : AppCompatActivity() {
         return false
     }
 
+    //Funcion registrar usuario en base de datos
     private fun register(email: String, password: String) {
         try {
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
@@ -136,6 +141,10 @@ class Login : AppCompatActivity() {
                     val intent = Intent(this@Login, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+                    val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("user_email", email)
+                    editor.apply()
                 } else {
                     // El registro falló, muestra un Toast con el mensaje de error
                     if (task.exception is FirebaseAuthUserCollisionException) {
