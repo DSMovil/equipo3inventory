@@ -7,11 +7,6 @@
     android:background="@color/black"
     tools:context=".view.MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragmentContainer">
-    </androidx.fragment.app.FragmentContainerView>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -26,7 +21,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Inventario"
-        app:titleTextColor="@color/white"></androidx.appcompat.widget.Toolbar>
+        app:titleTextColor="@color/white">
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
