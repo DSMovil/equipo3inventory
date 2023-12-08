@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.example.inventoryapp.R
 import com.example.inventoryapp.databinding.ActivityLoginBinding
 import com.example.inventoryapp.databinding.ActivityMainBinding
@@ -31,5 +32,22 @@ class MainActivity : AppCompatActivity() {
             editor.clear()
             editor.apply()
         }
+
+        binding.btnAgregar.setOnClickListener{
+
+            val intent = Intent(this@MainActivity, Agregar::class.java)
+            startActivity(intent)
+            finish()
+
+        }
     }
+/*
+    private fun cambiarFragment(fragment : Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainer,fragment)
+        fragmentTransaction.commit()
+    }
+
+ */
 }

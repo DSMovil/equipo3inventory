@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/barraLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarElementos"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/darkgray"
+            app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
+            app:title="Agregar Producto"
+            app:titleTextColor="@color/white">
+
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <!-- campo codigo -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/codigoLayout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Código producto"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/codigoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- campo articulo -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/articuloLayout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Nombre articulo"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/articuloText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="40"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- campo precio -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/precioLayout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Precio"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.36">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/precioTexto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="20"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- campo cantidad -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cantidadLayout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Cantidad"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47
+">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cantidadText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- boton guardar -->
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="360dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/orange"
+        android:enabled="false"
+        android:text="Guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.581" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
