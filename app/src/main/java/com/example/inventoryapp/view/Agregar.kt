@@ -8,6 +8,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.inventoryapp.R
 import com.example.inventoryapp.databinding.ActivityAgregarBinding
 import com.example.inventoryapp.databinding.ActivityLoginBinding
@@ -17,6 +20,9 @@ class Agregar : AppCompatActivity() {
     private lateinit var binding: ActivityAgregarBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        print("Alejo ${viewModel.name}")
         setContentView(R.layout.activity_agregar)
 
 
@@ -45,18 +51,25 @@ class Agregar : AppCompatActivity() {
         binding.precioTexto.addTextChangedListener(TextWatcher)
         binding.cantidadText.addTextChangedListener(TextWatcher)
         binding.articuloText.addTextChangedListener(TextWatcher)
+        binding.btnGuardar.setOnClickListener {
+            viewModel.agregarProducto()
+        }
 
     }
     //Variable textWatcher que obtiene el estado en vivo de cada InputText para realizar acciones
     private var TextWatcher = object : TextWatcher {
+        var codigo = ""
+        var nombre = ""
+        var precio = ""
+        var cantidad = ""
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
         }
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             //parte encargada de habilitar botones de login y registro
-            val codigo = binding.codigoText.text.toString().trim()
-            val nombre = binding.articuloText.text.toString().trim()
-            val precio = binding.precioTexto.text.toString().trim()
-            val cantidad = binding.cantidadText.text.toString().trim()
+             codigo = binding.codigoText.text.toString().trim()
+             nombre = binding.articuloText.text.toString().trim()
+             precio = binding.precioTexto.text.toString().trim()
+             cantidad = binding.cantidadText.text.toString().trim()
             binding.btnGuardar.isEnabled = codigo.isNotEmpty() && nombre.isNotEmpty() && precio.isNotEmpty() && cantidad.isNotEmpty()
         }
         override fun afterTextChanged(s: Editable?) {
