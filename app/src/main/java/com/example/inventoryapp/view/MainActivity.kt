@@ -11,6 +11,8 @@ import com.example.inventoryapp.R
 import com.example.inventoryapp.databinding.ActivityLoginBinding
 import com.example.inventoryapp.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 
 class MainViewModel : ViewModel() {
 
@@ -69,4 +71,15 @@ class MainActivity : AppCompatActivity() {
     }
 
  */
+
+    private fun addWidgetToHomeScreen() {
+        val appWidgetManager = AppWidgetManager.getInstance(this)
+        val myWidget = ComponentName(this, Mi_widget::class.java)
+        val appWidgetIds = appWidgetManager.getAppWidgetIds(myWidget)
+
+        val intent = Intent(this, Mi_widget::class.java)
+        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds)
+        sendBroadcast(intent)
+    }
 }
