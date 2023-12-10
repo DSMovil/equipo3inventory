@@ -22,7 +22,6 @@ class Agregar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        print("Alejo ${viewModel.name}")
         setContentView(R.layout.activity_agregar)
 
 
