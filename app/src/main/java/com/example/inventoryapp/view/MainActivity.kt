@@ -62,15 +62,6 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-/*
-    private fun cambiarFragment(fragment : Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentContainer,fragment)
-        fragmentTransaction.commit()
-    }
-
- */
 
     private fun addWidgetToHomeScreen() {
         val appWidgetManager = AppWidgetManager.getInstance(this)
