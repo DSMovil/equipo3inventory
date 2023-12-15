@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity(),Adapter.MyClickListener {
         })
     }
 
+
     private fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
     }

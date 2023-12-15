@@ -19,6 +19,13 @@ import com.example.inventoryapp.databinding.ActivityMainBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
+class MutaliveData<T> {
+    fun postValue(t: T) {
+
+    }
+
+}
+
 class Agregar : AppCompatActivity() {
     private lateinit var binding: ActivityAgregarBinding
     val db = Firebase.firestore
@@ -107,4 +114,12 @@ class Agregar : AppCompatActivity() {
                 Toast.makeText(this@Agregar, "Error al añadir", Toast.LENGTH_SHORT).show()
             }
     }
+    //private fun eliminarProducto(codigo: Int, productoEliminado: MutaliveData<Boolean>) {
+        //db.collection("articulo").document(codigo.toString()).delete().addOnSuccessListener {
+            //productoEliminado.postValue(true)
+        //}. addOnFailureListener {
+            //productoEliminado.postValue(false)
+        //}
+//0}
+
 }

@@ -87,8 +87,7 @@ class Detail : AppCompatActivity() {
         txtTotal.text = "Total: $$total"
     }
 
-    private fun eliminarProducto() {
-        // Aquí debes implementar la lógica para eliminar el producto de la base de datos.
+    private fun eliminarProducto() {        // Aquí debes implementar la lógica para eliminar el producto de la base de datos.
         // Luego, vuelve a la ventana principal (Ventana Home Inventario).
         // Puedes usar un Intent similar al que se usa en MainActivity para iniciar la nueva actividad.
         // ¡Recuerda actualizar la lista en la ventana principal después de eliminar el producto!
