@@ -32,11 +32,13 @@ class Detail : AppCompatActivity() {
         cardViewProducto = findViewById(R.id.cardViewProducto)
         btnEliminar = findViewById(R.id.btnEliminar)
         btnEditar = findViewById(R.id.btnEditar)
-
+/*
         txtNombreProducto = findViewById(R.id.txtNombreProducto)
         txtPrecioUnidad = findViewById(R.id.txtPrecioUnidad)
         txtCantidadDisponible = findViewById(R.id.txtCantidadDisponible)
         txtTotal = findViewById(R.id.txtTotal)
+
+ */
 
         setSupportActionBar(toolbar)
         supportActionBar?.apply {

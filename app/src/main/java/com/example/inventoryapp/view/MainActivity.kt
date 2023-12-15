@@ -29,7 +29,7 @@ import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),Adapter.MyClickListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var productoArrayList: ArrayList<Producto>
     private lateinit var adapter: Adapter
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
 
         productoArrayList = arrayListOf()
-        adapter = Adapter(productoArrayList)
+        adapter = Adapter(productoArrayList,this@MainActivity)
         recyclerView.adapter = adapter
 
         EventChangeListener()
@@ -86,13 +86,14 @@ class MainActivity : AppCompatActivity() {
                 if (error != null) {
                     Log.e("firestore error", error.message.toString())
                     // Añade un Toast para mostrar el mensaje de error en el dispositivo
-                    Toast.makeText(this@MainActivity, "Error en Firestore: ${error.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Error en Firestore", Toast.LENGTH_SHORT).show()
                     return
                 }
 
                 for (dc: DocumentChange in value?.documentChanges!!) {
                     if (dc.type == DocumentChange.Type.ADDED) {
                         productoArrayList.add(dc.document.toObject(Producto::class.java))
+                        hideProgressBar()
                     }
                 }
 
@@ -118,5 +119,9 @@ class MainActivity : AppCompatActivity() {
         intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds)
         sendBroadcast(intent)
+    }
+
+    override fun OnClick(productName: String) {
+        Toast.makeText(this, "Producto: $productName", Toast.LENGTH_SHORT).show()
     }
 }

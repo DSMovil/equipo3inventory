@@ -62,6 +62,8 @@ class Agregar : AppCompatActivity() {
                 precio.text.toString().toDouble(),
                 cantidad.text.toString().toDouble()
             )
+            val intent = Intent(this@Agregar, Login::class.java)
+            startActivity(intent)
         }
     }
 
