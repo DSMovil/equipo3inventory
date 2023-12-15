@@ -14,6 +14,8 @@ import com.google.firebase.auth.FirebaseAuth
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var productoArrayList: ArrayList<Producto>
     private lateinit var adapter: Adapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var progressBar: ProgressBar
     var db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         var auth = FirebaseAuth.getInstance()
 
         recyclerView = binding.recyclerViewInventario
+        progressBar = binding.progressBar
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
@@ -75,6 +79,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun EventChangeListener() {
+        showProgressBar()
         db = FirebaseFirestore.getInstance()
         db.collection("productos").addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
@@ -96,6 +101,13 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        progressBar.visibility = View.INVISIBLE
+    }
 
     private fun addWidgetToHomeScreen() {
         val appWidgetManager = AppWidgetManager.getInstance(this)
