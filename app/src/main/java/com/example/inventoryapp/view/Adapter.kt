@@ -30,7 +30,7 @@ class Adapter (private val productList: ArrayList<Producto>, val listener: MyCli
     }
 
     interface MyClickListener{
-        fun OnClick(productName: String)
+        fun OnClick(productoNombre: String)
     }
 
     inner  class  MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -42,8 +42,8 @@ class Adapter (private val productList: ArrayList<Producto>, val listener: MyCli
             itemView.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val productName = productList[position].nombre
-                    listener.OnClick(productName)
+                    val productId = productList[position].nombre
+                    listener.OnClick(productId)
                 }
             }
         }

@@ -97,9 +97,7 @@ class Detail : AppCompatActivity() {
     }
 
     private fun abrirVentanaEdicion() {
-        // Aquí debes implementar la lógica para dirigir al usuario a la ventana de edición (HU:6.0).
-        // Puedes usar un Intent para iniciar la actividad de edición y pasar el producto como parámetro.
-        // Implementa aquí la lógica para abrir la ventana de edición
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

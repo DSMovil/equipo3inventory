@@ -15,6 +15,9 @@
         android:theme="@style/Theme.InventoryApp"
         tools:targetApi="31">
         <activity
+            android:name=".view.Editar"
+            android:exported="false" />
+        <activity
             android:name=".view.Agregar"
             android:exported="false" />
         <activity
@@ -47,10 +50,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver
-            android:name="com.example.inventoryapp.view.Mi_widget"
-            android:label="Inventory Widget"
-            android:exported="true">
+            android:name=".view.Mi_widget"
+            android:exported="true"
+            android:label="Inventory Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="TOGGLE_EYE" />

@@ -122,6 +122,8 @@ class MainActivity : AppCompatActivity(),Adapter.MyClickListener {
     }
 
     override fun OnClick(productName: String) {
+
         Toast.makeText(this, "Producto: $productName", Toast.LENGTH_SHORT).show()
+
     }
 }
