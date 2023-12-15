@@ -37,25 +37,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
-        var auth = FirebaseAuth.getInstance()
-
-        //se utiliza viewbinding
+        // Se utiliza viewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding.root)  // Usar el root de la vista inflada
+
+        var auth = FirebaseAuth.getInstance()
 
         recyclerView = binding.recyclerViewInventario
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
         productoArrayList = arrayListOf()
-
         adapter = Adapter(productoArrayList)
-
         recyclerView.adapter = adapter
 
         EventChangeListener()
-
 
         //boton cerrar sesion
         binding.logout.setOnClickListener{
@@ -80,27 +76,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun EventChangeListener() {
         db = FirebaseFirestore.getInstance()
-        db.collection("productos").
-                addSnapshotListener(object : EventListener<QuerySnapshot>{
-                    override fun onEvent(
-                        value: QuerySnapshot?,
-                        error: FirebaseFirestoreException?
-                    ) {
-                        if(error != null){
-                            Log.e("firestore error", error.message.toString())
-                            return
-                        }
-                        for (dc: DocumentChange in value?.documentChanges!!){
-                            if (dc.type == DocumentChange.Type.ADDED){
-                                productoArrayList.add(dc.document.toObject(Producto::class.java))
+        db.collection("productos").addSnapshotListener(object : EventListener<QuerySnapshot> {
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                if (error != null) {
+                    Log.e("firestore error", error.message.toString())
+                    // Añade un Toast para mostrar el mensaje de error en el dispositivo
+                    Toast.makeText(this@MainActivity, "Error en Firestore: ${error.message}", Toast.LENGTH_SHORT).show()
+                    return
+                }
 
-                            }
-                        }
-                        adapter.notifyDataSetChanged()
+                for (dc: DocumentChange in value?.documentChanges!!) {
+                    if (dc.type == DocumentChange.Type.ADDED) {
+                        productoArrayList.add(dc.document.toObject(Producto::class.java))
                     }
+                }
 
-                })
+                adapter.notifyDataSetChanged()
+            }
+        })
     }
+
 
     private fun addWidgetToHomeScreen() {
         val appWidgetManager = AppWidgetManager.getInstance(this)
