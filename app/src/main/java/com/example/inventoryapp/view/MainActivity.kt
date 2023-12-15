@@ -13,27 +13,29 @@ import com.example.inventoryapp.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
+import android.util.Log
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
 
-class MainViewModel : ViewModel() {
-
-    init {
-
-    }
-
-    fun agregarProducto() {
-        print("Agregando algo..")
-    }
-}
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var productoArrayList: ArrayList<Producto>
+    private lateinit var adapter: Adapter
+    private lateinit var recyclerView: RecyclerView
+    var db = Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val viewModel = viewModelFactory {
-            MainViewModel()
-        }
-
 
         setContentView(R.layout.activity_main)
         var auth = FirebaseAuth.getInstance()
@@ -41,6 +43,19 @@ class MainActivity : AppCompatActivity() {
         //se utiliza viewbinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        recyclerView = binding.recyclerViewInventario
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+
+        productoArrayList = arrayListOf()
+
+        adapter = Adapter(productoArrayList)
+
+        recyclerView.adapter = adapter
+
+        EventChangeListener()
+
 
         //boton cerrar sesion
         binding.logout.setOnClickListener{
@@ -61,6 +76,30 @@ class MainActivity : AppCompatActivity() {
             finish()
 
         }
+    }
+
+    private fun EventChangeListener() {
+        db = FirebaseFirestore.getInstance()
+        db.collection("productos").
+                addSnapshotListener(object : EventListener<QuerySnapshot>{
+                    override fun onEvent(
+                        value: QuerySnapshot?,
+                        error: FirebaseFirestoreException?
+                    ) {
+                        if(error != null){
+                            Log.e("firestore error", error.message.toString())
+                            return
+                        }
+                        for (dc: DocumentChange in value?.documentChanges!!){
+                            if (dc.type == DocumentChange.Type.ADDED){
+                                productoArrayList.add(dc.document.toObject(Producto::class.java))
+
+                            }
+                        }
+                        adapter.notifyDataSetChanged()
+                    }
+
+                })
     }
 
     private fun addWidgetToHomeScreen() {

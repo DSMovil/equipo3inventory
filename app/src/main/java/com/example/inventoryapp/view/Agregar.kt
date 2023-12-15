@@ -24,7 +24,6 @@ class Agregar : AppCompatActivity() {
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         setContentView(R.layout.activity_agregar)
 
