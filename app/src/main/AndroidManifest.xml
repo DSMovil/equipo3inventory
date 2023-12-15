@@ -26,6 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".view.EyeIconClickService"
+            android:exported="false" />
         <activity
             android:name=".view.Registration"
             android:exported="false" />
@@ -48,7 +51,7 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name="com.example.inventoryapp.view.Mi_widget"
+            android:name=".view.Mi_widget"
             android:label="Inventory Widget"
             android:exported="true">
             <intent-filter>
